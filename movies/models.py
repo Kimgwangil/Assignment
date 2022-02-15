@@ -21,5 +21,5 @@ class Movie(models.Model):
 
 
 class ActorMovie(models.Model):
-    actors = models.ForeignKey('Actor', on_delete=models.CASCADE)
-    movies = models.ForeignKey('Movie', on_delete=models.CASCADE)
+    actor = models.ForeignKey('Actor', on_delete=models.CASCADE)
+    movie = models.ForeignKey('Movie', on_delete=models.CASCADE)
