@@ -5,7 +5,6 @@ class Actor(models.Model):
     first_name    = models.CharField(max_length=45)
     last_name     = models.CharField(max_length=45)
     date_of_birth = models.DateField()
-    movies        = models.ManyToManyField('Movies', through='ActorMovie', related_name='movies')
 
     class Meta:
         db_table = 'actors'
@@ -15,7 +14,8 @@ class Movie(models.Model):
     title        = models.CharField(max_length=45)
     release_date = models.DateField()
     running_time = models.IntegerField()
-
+    actors       = models.ManyToManyField( 'Actor', through="ActorMovie", related_name="movies")
+    
     class Meta:
         db_table = 'movies'
 
@@ -23,3 +23,6 @@ class Movie(models.Model):
 class ActorMovie(models.Model):
     actor = models.ForeignKey('Actor', on_delete=models.CASCADE)
     movie = models.ForeignKey('Movie', on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'actorsmovies'
